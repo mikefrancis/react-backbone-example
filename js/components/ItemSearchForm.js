@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var ItemSearchForm = React.createClass({
   onChange: function(e) {
@@ -14,4 +14,4 @@ var ItemSearchForm = React.createClass({
   }
 });
 
-module.exports = ItemSearchForm;
+export default ItemSearchForm;

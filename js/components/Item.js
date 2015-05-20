@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var Item = React.createClass({
   render: function() {
@@ -11,4 +11,4 @@ var Item = React.createClass({
   }
 });
 
-module.exports = Item;
+export default Item;

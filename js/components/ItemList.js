@@ -1,7 +1,7 @@
-var React           = require('react');
-var Backbone        = require('backbone');
-var Item            = require('./Item');
-var ItemSearchForm  = require('./ItemSearchForm');
+import React from 'react';
+import Backbone from 'backbone';
+import Item from './Item';
+import ItemSearchForm from './ItemSearchForm';
 
 var ItemList = React.createClass({
   getInitialState: function() {
@@ -63,4 +63,4 @@ var ItemList = React.createClass({
   }
 });
 
-module.exports = ItemList;
+export default ItemList;

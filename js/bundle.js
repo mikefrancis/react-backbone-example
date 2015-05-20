@@ -1,29 +1,44 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
-var ItemList = require('./components/ItemList');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-React.render(React.createElement(ItemList, null), document.getElementById('ItemList'));
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _componentsItemList = require('./components/ItemList');
+
+var _componentsItemList2 = _interopRequireDefault(_componentsItemList);
+
+_react2['default'].render(_react2['default'].createElement(_componentsItemList2['default'], null), document.getElementById('ItemList'));
 
 },{"./components/ItemList":3,"react":163}],2:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 
-var Item = React.createClass({
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var Item = _react2['default'].createClass({
   displayName: 'Item',
 
   render: function render() {
-    return React.createElement(
+    return _react2['default'].createElement(
       'article',
       null,
-      React.createElement(
+      _react2['default'].createElement(
         'h3',
         null,
         this.props.name
       ),
-      React.createElement(
+      _react2['default'].createElement(
         'p',
         null,
         this.props.pantone_value
@@ -32,17 +47,35 @@ var Item = React.createClass({
   }
 });
 
-module.exports = Item;
+exports['default'] = Item;
+module.exports = exports['default'];
 
 },{"react":163}],3:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
-var Backbone = require('backbone');
-var Item = require('./Item');
-var ItemSearchForm = require('./ItemSearchForm');
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 
-var ItemList = React.createClass({
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _backbone = require('backbone');
+
+var _backbone2 = _interopRequireDefault(_backbone);
+
+var _Item = require('./Item');
+
+var _Item2 = _interopRequireDefault(_Item);
+
+var _ItemSearchForm = require('./ItemSearchForm');
+
+var _ItemSearchForm2 = _interopRequireDefault(_ItemSearchForm);
+
+var ItemList = _react2['default'].createClass({
   displayName: 'ItemList',
 
   getInitialState: function getInitialState() {
@@ -56,7 +89,7 @@ var ItemList = React.createClass({
   },
 
   getItems: function getItems() {
-    var ItemsCollection = Backbone.Collection.extend({
+    var ItemsCollection = _backbone2['default'].Collection.extend({
       url: 'http://reqr.es/api/unknown',
       parse: function parse(results) {
         return results.data;
@@ -84,42 +117,51 @@ var ItemList = React.createClass({
 
   render: function render() {
     var newItem = function newItem(item) {
-      return React.createElement(Item, { name: item.name, pantone_value: item.pantone_value });
+      return _react2['default'].createElement(_Item2['default'], { name: item.name, pantone_value: item.pantone_value });
     };
 
     var items;
     if (this.state.items.length > 0) {
       items = this.state.items.map(newItem);
     } else {
-      items = React.createElement(
+      items = _react2['default'].createElement(
         'p',
         null,
         'No results.'
       );
     }
 
-    return React.createElement(
+    return _react2['default'].createElement(
       'div',
       null,
-      React.createElement(
+      _react2['default'].createElement(
         'h1',
         null,
         'Items'
       ),
-      React.createElement(ItemSearchForm, { search: this.searchItems }),
+      _react2['default'].createElement(_ItemSearchForm2['default'], { search: this.searchItems }),
       items
     );
   }
 });
 
-module.exports = ItemList;
+exports['default'] = ItemList;
+module.exports = exports['default'];
 
 },{"./Item":2,"./ItemSearchForm":4,"backbone":5,"react":163}],4:[function(require,module,exports){
 "use strict";
 
-var React = require("react");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var ItemSearchForm = React.createClass({
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var ItemSearchForm = _react2["default"].createClass({
   displayName: "ItemSearchForm",
 
   onChange: function onChange(e) {
@@ -127,15 +169,16 @@ var ItemSearchForm = React.createClass({
   },
 
   render: function render() {
-    return React.createElement(
+    return _react2["default"].createElement(
       "form",
       null,
-      React.createElement("input", { placeholder: "Enter search text", onChange: this.onChange })
+      _react2["default"].createElement("input", { placeholder: "Enter search text", onChange: this.onChange })
     );
   }
 });
 
-module.exports = ItemSearchForm;
+exports["default"] = ItemSearchForm;
+module.exports = exports["default"];
 
 },{"react":163}],5:[function(require,module,exports){
 (function (global){
