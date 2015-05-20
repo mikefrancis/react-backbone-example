@@ -1,7 +1,7 @@
 import React from 'react';
-import Backbone from 'backbone';
 import Item from './Item';
 import ItemSearchForm from './ItemSearchForm';
+import ItemsCollection from './../collections/ItemsCollection';
 
 var ItemList = React.createClass({
   getInitialState: function() {
@@ -15,16 +15,10 @@ var ItemList = React.createClass({
   },
 
   getItems: function() {
-    var ItemsCollection = Backbone.Collection.extend({
-      url: 'http://reqr.es/api/unknown',
-      parse: function(results) {
-        return results.data;
-      }
-    });
     var items = new ItemsCollection();
-    items.fetch().done(function() {
+    items.on('add', function(){
       this.setState({ items: items.toJSON() });
-    }.bind(this));
+    }.bind(this)).fetch();
   },
 
   searchItems: function(query) {
