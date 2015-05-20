@@ -1,7 +1,7 @@
 {
   "name": "react-backbone-example",
   "version": "0.0.0",
-  "description": "Using React as a view layer for your Backone Collections.",
+  "description": "A very simple React/Backbone app using ES6.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
