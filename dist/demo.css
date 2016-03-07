@@ -1,0 +1,15 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  align-items: center;
+  display: flex;
+}
+
+#ItemList {
+  margin: 0 auto;
+  max-width: 400px;
+  text-align: center;
+}

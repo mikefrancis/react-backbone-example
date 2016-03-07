@@ -1,26 +1,39 @@
-var gulp       = require('gulp');
-var browserify = require('browserify');
-var babelify   = require('babelify');
-var source     = require('vinyl-source-stream');
-var connect    = require('gulp-connect');
+const gulp = require('gulp');
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
+const browserSync = require('browser-sync').create();
 
-gulp.task('js', function() {
-  return browserify('./js/all.js')
-    .transform(babelify)
+const config = {
+  src: {
+    root: './src',
+    js: 'js',
+  },
+  dist: {
+    root: './dist',
+    js: 'js',
+  },
+};
+
+gulp.task('js', () => {
+  return browserify(config.src.root + '/' + config.src.js + '/script.js')
+    .transform(babelify, { presets: ['es2015', 'react'] })
     .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest('js'))
-    .pipe(connect.reload());
+    .pipe(source('script.js'))
+    .pipe(gulp.dest(config.dist.root + '/' + config.dist.js))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('connect', function() {
-  connect.server({
-    livereload: true
-  })
+gulp.task('watch', () => {
+  gulp.watch(config.src.root + '/' + config.src.js + '/**/*.js', ['js']);
 });
 
-gulp.task('watch', function() {
-  gulp.watch('js/components/**/*.js', ['js']);
+gulp.task('browser-sync', () => {
+  browserSync.init({
+    server: {
+      baseDir: config.dist.root,
+    },
+  });
 });
 
-gulp.task('default', ['connect', 'js', 'watch']);
+gulp.task('default', ['browser-sync', 'js', 'watch']);
